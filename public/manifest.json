@@ -1,0 +1,14 @@
+{
+  "name": "Know Your Rights Bot",
+  "description": "Know Your Rights Bot is a Base Mini App built with Zara.",
+  "image": "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=OG",
+  "external_url": "https://9cc2002d-ca58-4c55-b631-c45c583cc2db.vercel.app",
+  "properties": {
+    "app": {
+      "name": "Know Your Rights Bot",
+      "description": "Know Your Rights Bot is a Base Mini App built with Zara.",
+      "url": "https://9cc2002d-ca58-4c55-b631-c45c583cc2db.vercel.app",
+      "icon": "https://0co.to/images/zara-2.png"
+    }
+  }
+}
