@@ -70,23 +70,42 @@ export default function HomePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      <div className="min-h-screen flex items-center justify-center bg-dark-bg">
+        <div className="text-center animate-fade-in">
+          <div className="loading-spinner h-12 w-12 mx-auto mb-4"></div>
+          <p className="text-gray-400 text-sm">Loading your learning journey...</p>
+        </div>
       </div>
     );
   }
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-dark-text mb-4">Welcome to Know Your Rights Bot</h1>
-          <p className="text-gray-400 mb-6">Connect your wallet to start learning about your workplace rights</p>
-          <Wallet>
-            <ConnectWallet>
-              <Name />
-            </ConnectWallet>
-          </Wallet>
+      <div className="min-h-screen flex items-center justify-center p-4 bg-dark-bg">
+        <div className="text-center max-w-md mx-auto animate-fade-in">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gradient mb-4">
+              Welcome to Know Your Rights Bot
+            </h1>
+            <p className="text-gray-400 text-lg leading-relaxed mb-2">
+              Empower yourself with workplace knowledge
+            </p>
+            <p className="text-gray-500 text-sm">
+              Connect your wallet to start your learning journey and earn rewards
+            </p>
+          </div>
+          
+          <div className="glass-card p-6 rounded-xl">
+            <Wallet>
+              <ConnectWallet>
+                <Name />
+              </ConnectWallet>
+            </Wallet>
+          </div>
+          
+          <div className="mt-6 text-xs text-gray-500">
+            <p>🔒 Secure • 🎓 Educational • 🏆 Rewarding</p>
+          </div>
         </div>
       </div>
     );
@@ -114,34 +133,73 @@ export default function HomePage() {
       </header>
 
       {/* Navigation */}
-      <nav className="glass-card border-b border-gray-700">
+      <nav className="glass-card border-b border-gray-700" role="navigation" aria-label="Main navigation">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="flex space-x-1">
+          {/* Desktop Navigation */}
+          <div className="hidden sm:flex space-x-1">
             {[
-              { id: 'modules', label: 'Learn', icon: BookOpen },
-              { id: 'badges', label: 'Badges', icon: Award },
-              { id: 'disputes', label: 'Help', icon: HelpCircle },
-              { id: 'profile', label: 'Profile', icon: Users }
-            ].map(({ id, label, icon: Icon }) => (
+              { id: 'modules', label: 'Learn', icon: BookOpen, description: 'Browse learning modules' },
+              { id: 'badges', label: 'Badges', icon: Award, description: 'View your achievements' },
+              { id: 'disputes', label: 'Help', icon: HelpCircle, description: 'Get help with workplace issues' },
+              { id: 'profile', label: 'Profile', icon: Users, description: 'View your profile and progress' }
+            ].map(({ id, label, icon: Icon, description }) => (
               <button
                 key={id}
                 onClick={() => setSelectedView(id as any)}
-                className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
-                  selectedView === id
-                    ? 'bg-primary bg-opacity-20 text-primary'
-                    : 'text-gray-400 hover:text-dark-text hover:bg-gray-700'
-                }`}
+                className={`nav-item ${selectedView === id ? 'active' : ''}`}
+                aria-pressed={selectedView === id}
+                aria-label={`${label} - ${description}`}
+                title={description}
               >
-                <Icon className="w-4 h-4 mr-2" />
-                {label}
+                <Icon className="w-4 h-4 mr-2" aria-hidden="true" />
+                <span>{label}</span>
               </button>
             ))}
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="sm:hidden">
+            <div className="flex justify-between items-center py-2">
+              <h2 className="text-lg font-semibold text-dark-text">
+                {selectedView === 'modules' && 'Learn'}
+                {selectedView === 'badges' && 'Badges'}
+                {selectedView === 'disputes' && 'Help'}
+                {selectedView === 'profile' && 'Profile'}
+              </h2>
+            </div>
+            
+            {/* Mobile Tab Bar - Fixed at bottom */}
+            <div className="fixed bottom-0 left-0 right-0 z-50 bg-dark-surface bg-opacity-95 backdrop-blur-md border-t border-gray-700">
+              <div className="flex justify-around items-center py-2 px-4 max-w-md mx-auto">
+                {[
+                  { id: 'modules', label: 'Learn', icon: BookOpen },
+                  { id: 'badges', label: 'Badges', icon: Award },
+                  { id: 'disputes', label: 'Help', icon: HelpCircle },
+                  { id: 'profile', label: 'Profile', icon: Users }
+                ].map(({ id, label, icon: Icon }) => (
+                  <button
+                    key={id}
+                    onClick={() => setSelectedView(id as any)}
+                    className={`touch-target flex flex-col items-center justify-center text-xs font-medium transition-all duration-200 rounded-lg ${
+                      selectedView === id
+                        ? 'text-primary'
+                        : 'text-gray-400 hover:text-dark-text'
+                    }`}
+                    aria-pressed={selectedView === id}
+                    aria-label={label}
+                  >
+                    <Icon className={`w-5 h-5 mb-1 ${selectedView === id ? 'text-primary' : ''}`} aria-hidden="true" />
+                    <span className={selectedView === id ? 'text-primary' : ''}>{label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 py-6">
+      <main className="max-w-4xl mx-auto px-4 py-6 pb-24 sm:pb-6" role="main">
         {selectedView === 'modules' && (
           <div className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -178,10 +236,18 @@ export default function HomePage() {
                 />
               ))}
               {user.badges.length === 0 && (
-                <div className="col-span-full text-center py-12">
-                  <Award className="w-16 h-16 text-gray-500 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-400 mb-2">No badges yet</h3>
-                  <p className="text-gray-500">Complete modules to earn your first badge!</p>
+                <div className="col-span-full empty-state animate-fade-in">
+                  <Award className="empty-state-icon" aria-hidden="true" />
+                  <h3 className="empty-state-title">No badges yet</h3>
+                  <p className="empty-state-description">
+                    Complete learning modules to earn your first badge and show off your workplace knowledge!
+                  </p>
+                  <button
+                    onClick={() => setSelectedView('modules')}
+                    className="btn-primary mt-4 animate-bounce-subtle"
+                  >
+                    Start Learning
+                  </button>
                 </div>
               )}
             </div>
@@ -241,9 +307,18 @@ export default function HomePage() {
                     );
                   })
                 ) : (
-                  <div className="text-center py-8">
-                    <BookOpen className="w-12 h-12 text-gray-500 mx-auto mb-3" />
-                    <p className="text-gray-400">No activity yet. Start learning to see your progress!</p>
+                  <div className="empty-state">
+                    <BookOpen className="empty-state-icon" aria-hidden="true" />
+                    <h4 className="empty-state-title">No activity yet</h4>
+                    <p className="empty-state-description">
+                      Start learning to see your progress and track your achievements!
+                    </p>
+                    <button
+                      onClick={() => setSelectedView('modules')}
+                      className="btn-secondary mt-4"
+                    >
+                      Browse Modules
+                    </button>
                   </div>
                 )}
               </div>

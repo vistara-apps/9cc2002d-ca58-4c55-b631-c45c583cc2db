@@ -11,40 +11,52 @@ interface UserStatsProps {
 
 export function UserStats({ stats, className = '' }: UserStatsProps) {
   return (
-    <div className={`glass-card p-6 rounded-lg ${className}`}>
-      <h2 className="text-xl font-bold text-dark-text mb-6">Your Progress</h2>
+    <section className={`glass-card p-6 rounded-lg ${className} animate-fade-in`} aria-labelledby="progress-heading">
+      <h2 id="progress-heading" className="text-xl font-bold text-dark-text mb-6">Your Progress</h2>
       
       <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="text-center">
-          <div className="flex items-center justify-center w-12 h-12 bg-primary bg-opacity-20 rounded-full mb-2 mx-auto">
-            <Trophy className="w-6 h-6 text-primary" />
+        <div className="text-center group">
+          <div className="flex items-center justify-center w-14 h-14 bg-primary bg-opacity-20 rounded-full mb-3 mx-auto 
+                          group-hover:bg-opacity-30 transition-all duration-200 group-hover:scale-105">
+            <Trophy className="w-7 h-7 text-primary" aria-hidden="true" />
           </div>
-          <div className="text-2xl font-bold text-gradient">{stats.totalScore}</div>
-          <div className="text-sm text-gray-400">Total Points</div>
+          <div className="text-2xl font-bold text-gradient animate-scale-in" aria-label={`${stats.totalScore} total points`}>
+            {stats.totalScore}
+          </div>
+          <div className="text-sm text-gray-400 font-medium">Total Points</div>
         </div>
         
-        <div className="text-center">
-          <div className="flex items-center justify-center w-12 h-12 bg-accent bg-opacity-20 rounded-full mb-2 mx-auto">
-            <Target className="w-6 h-6 text-accent" />
+        <div className="text-center group">
+          <div className="flex items-center justify-center w-14 h-14 bg-accent bg-opacity-20 rounded-full mb-3 mx-auto
+                          group-hover:bg-opacity-30 transition-all duration-200 group-hover:scale-105">
+            <Target className="w-7 h-7 text-accent" aria-hidden="true" />
           </div>
-          <div className="text-2xl font-bold text-accent">{stats.level}</div>
-          <div className="text-sm text-gray-400">Level</div>
+          <div className="text-2xl font-bold text-accent animate-scale-in" aria-label={`Level ${stats.level}`}>
+            {stats.level}
+          </div>
+          <div className="text-sm text-gray-400 font-medium">Level</div>
         </div>
         
-        <div className="text-center">
-          <div className="flex items-center justify-center w-12 h-12 bg-yellow-400 bg-opacity-20 rounded-full mb-2 mx-auto">
-            <Award className="w-6 h-6 text-yellow-400" />
+        <div className="text-center group">
+          <div className="flex items-center justify-center w-14 h-14 bg-yellow-400 bg-opacity-20 rounded-full mb-3 mx-auto
+                          group-hover:bg-opacity-30 transition-all duration-200 group-hover:scale-105">
+            <Award className="w-7 h-7 text-yellow-400" aria-hidden="true" />
           </div>
-          <div className="text-xl font-bold text-yellow-400">{stats.badgesEarned}</div>
-          <div className="text-sm text-gray-400">Badges</div>
+          <div className="text-xl font-bold text-yellow-400 animate-scale-in" aria-label={`${stats.badgesEarned} badges earned`}>
+            {stats.badgesEarned}
+          </div>
+          <div className="text-sm text-gray-400 font-medium">Badges</div>
         </div>
         
-        <div className="text-center">
-          <div className="flex items-center justify-center w-12 h-12 bg-purple-400 bg-opacity-20 rounded-full mb-2 mx-auto">
-            <TrendingUp className="w-6 h-6 text-purple-400" />
+        <div className="text-center group">
+          <div className="flex items-center justify-center w-14 h-14 bg-purple-400 bg-opacity-20 rounded-full mb-3 mx-auto
+                          group-hover:bg-opacity-30 transition-all duration-200 group-hover:scale-105">
+            <TrendingUp className="w-7 h-7 text-purple-400" aria-hidden="true" />
           </div>
-          <div className="text-xl font-bold text-purple-400">{stats.modulesCompleted}</div>
-          <div className="text-sm text-gray-400">Completed</div>
+          <div className="text-xl font-bold text-purple-400 animate-scale-in" aria-label={`${stats.modulesCompleted} modules completed`}>
+            {stats.modulesCompleted}
+          </div>
+          <div className="text-sm text-gray-400 font-medium">Completed</div>
         </div>
       </div>
       
