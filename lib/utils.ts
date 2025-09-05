@@ -1,4 +1,5 @@
-import { GameStats, User, Badge, GAME_LEVELS } from './types';
+import { GameStats, User, Badge } from './types';
+import { GAME_LEVELS } from './constants';
 
 export function calculateGameStats(user: User): GameStats {
   const level = GAME_LEVELS.find(l => user.score >= l.minPoints && 
