@@ -11,6 +11,7 @@ import { ModuleCard } from '@/components/ModuleCard';
 import { UserStats } from '@/components/UserStats';
 import { GamificationCard } from '@/components/GamificationCard';
 import { FrameButton } from '@/components/FrameButton';
+import { X402PaymentDemo } from '@/components/X402PaymentDemo';
 import { BookOpen, Award, HelpCircle, Users } from 'lucide-react';
 
 export default function HomePage() {
@@ -223,6 +224,9 @@ export default function HomePage() {
               <UserStats stats={stats} />
               <GamificationCard variant="score" data={stats} />
             </div>
+            
+            {/* X402 Payment Demo */}
+            <X402PaymentDemo />
             
             <div className="glass-card p-6 rounded-lg">
               <h3 className="text-lg font-semibold text-dark-text mb-4">Recent Activity</h3>
