@@ -8,22 +8,22 @@
   }
   
   body {
-    @apply bg-dark-bg text-dark-text;
+    @apply bg-gray-900 text-gray-100;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-dark-surface bg-opacity-80 backdrop-blur-sm border border-gray-700;
+    @apply bg-gray-800 bg-opacity-80 backdrop-blur-sm border border-gray-700;
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-accent to-primary text-white px-6 py-3 rounded-lg font-medium hover:from-green-500 hover:to-blue-600 transition-all duration-200 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:from-green-600 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl;
   }
   
   .btn-secondary {
-    @apply bg-dark-surface text-dark-text border border-gray-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-700 transition-all duration-200;
+    @apply bg-gray-800 text-gray-100 border border-gray-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-700 transition-all duration-200;
   }
   
   .progress-bar {
@@ -31,7 +31,7 @@
   }
   
   .progress-fill {
-    @apply bg-gradient-to-r from-accent to-primary h-2 rounded-full transition-all duration-300;
+    @apply bg-gradient-to-r from-green-500 to-blue-600 h-2 rounded-full transition-all duration-300;
   }
   
   .badge {
@@ -67,7 +67,7 @@
   }
   
   .question-option.selected {
-    @apply bg-primary bg-opacity-20 border-primary;
+    @apply bg-blue-600 bg-opacity-20 border-blue-600;
   }
   
   .question-option.correct {
@@ -81,7 +81,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-green-500 to-blue-600 bg-clip-text text-transparent;
   }
   
   .animate-pulse-subtle {
